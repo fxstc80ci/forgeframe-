@@ -19,6 +19,8 @@ mission
 architecture
 requirements
 detailed design
+enterprise design checklist
+capability coverage matrix
 work packages
 task cards
 autonomous build rules
@@ -31,7 +33,7 @@ runbooks
 paper/blog traceability
 ```
 
-The result is a repeatable framework for enterprise application delivery where AI agents can build continuously while staying inside explicit safety, test, architecture, and Git boundaries.
+The result is a repeatable framework for enterprise application delivery where AI agents can build continuously while staying inside explicit safety, test, architecture, Git, configuration, data, UX, ML, operations, release, and governance boundaries.
 
 ---
 
@@ -48,6 +50,7 @@ premature implementation
 unsafe assumptions
 undocumented decisions
 weak handoff between design and code
+shallow enterprise coverage
 ```
 
 ForgeFrame embeds the structure directly in the repository so the agent operates from versioned instructions, not fragile chat memory.
@@ -70,7 +73,7 @@ Local dev infrastructure layer
   -> local server, databases, services, test harnesses, logs, dashboards
 
 Enterprise assurance layer
-  -> safety gates, no-live defaults, replayability, observability, runbooks
+  -> safety gates, configuration, security, data governance, QA, observability, runbooks
 ```
 
 ---
@@ -87,9 +90,6 @@ forgeframe-/
     gitWorkflow.md
     codexCliWorkflow.md
     localDevServerWorkflow.md
-    autonomousBuildDoctrine.md
-    safetyAndStopGates.md
-    acceptanceStrategy.md
     paper/
       forgeframePaper.md
     blog/
@@ -97,6 +97,8 @@ forgeframe-/
   templates/
     requirements.md
     design.md
+    enterpriseDesignChecklist.md
+    capabilityCoverageMatrix.md
     workPackages.md
     taskCards.md
     autonomousBuildRules.md
@@ -111,6 +113,38 @@ forgeframe-/
   scripts/
     validateFramework.sh
 ```
+
+---
+
+## Enterprise capability coverage
+
+ForgeFrame now explicitly prompts each autonomous project to account for:
+
+```text
+API design and construction
+security and access control
+certificates, DNS, and networking
+package and environment setup
+configuration and parameter control
+UI/UX design, mockups, workspace grids, chat interfaces, multimedia, and voice
+database schemas and data model design
+metadata, master data, and reference data
+ETL and data pipelines
+vector databases, RAG, and memory frameworks
+ML integration and model promotion
+reports and analytics
+debug, error handling, structured logging, and log levels
+monitoring, observability, self-healing, and self-improvement
+token optimization and AI cost control
+performance tuning
+work-package dependencies and parallel coding-agent execution
+QA, regression, acceptance, and UX testing
+cost modelling
+Git, release management, backup, recovery, retention, archiving, and disposition
+production promotion, runbooks, documentation, and rollback
+```
+
+Each item must be implemented, tested, documented, accepted, declared not applicable, or explicitly deferred with a known limitation.
 
 ---
 
@@ -132,6 +166,8 @@ Then customize:
 ```text
 requirements.md
 design.md
+enterpriseDesignChecklist.md
+capabilityCoverageMatrix.md
 workPackages.md
 taskCards.md
 autonomousBuildRules.md
@@ -142,7 +178,7 @@ acceptanceCriteria.md
 Start the agent with:
 
 ```text
-Read AGENTS.md, docs/workPackages.md, docs/taskCards.md, docs/autonomousBuildRules.md, and docs/continuousAutonomousMode.md. Continue the build autonomously from the first incomplete task card. Commit after each task. Stop only on mandatory stop gates.
+Read AGENTS.md, docs/enterpriseDesignChecklist.md, docs/capabilityCoverageMatrix.md, docs/workPackages.md, docs/taskCards.md, docs/autonomousBuildRules.md, and docs/continuousAutonomousMode.md. Continue the build autonomously from the first incomplete task card. Commit after each task. Stop only on mandatory stop gates.
 ```
 
 ---
@@ -152,10 +188,11 @@ Read AGENTS.md, docs/workPackages.md, docs/taskCards.md, docs/autonomousBuildRul
 1. **Git is the build memory.** Chat can guide, but the repository must hold the durable instructions.
 2. **Task cards are execution units.** Every autonomous build task must have scope, deliverables, tests, and acceptance criteria.
 3. **Continuous mode needs stop gates.** Autonomy should not mean blind execution.
-4. **Safety defaults matter.** Production-affecting actions must be disabled by default.
+4. **Safety defaults matter.** Production-impacting actions must be disabled by default.
 5. **Tests are the agent's guardrails.** Each task must add or update tests.
 6. **Architecture must be versioned.** The agent should never rely only on transient conversation context.
-7. **Completeness requires holistic review.** The framework must detect missing depth before final acceptance.
+7. **Enterprise coverage must be explicit.** API, security, UI, data, ML, operations, QA, release, backup, and retention are design concerns, not afterthoughts.
+8. **Completeness requires holistic review.** The framework must detect missing depth before final acceptance.
 
 ---
 
@@ -167,7 +204,7 @@ ForgeFrame was extracted from a live autonomous build effort for CryptoBot V5, w
 single-task stopping -> continuous autonomous mode
 broad work packages -> scoped task cards
 missing ML detail -> ML training design
-missing enterprise gaps -> holistic completion review
+missing enterprise gaps -> holistic completion review and enterprise checklist
 ad hoc prompting -> repository-embedded doctrine
 ```
 
@@ -175,7 +212,7 @@ ad hoc prompting -> repository-embedded doctrine
 
 ## Status
 
-Initial template seed. The framework is ready for refinement into a reusable project generator and publication package.
+Initial reusable framework seed. The framework now includes core autonomous-build doctrine plus enterprise capability coverage templates.
 
 ---
 
